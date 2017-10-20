@@ -1,0 +1,24 @@
+{
+  "name": "winston-slack-webhook-transport",
+  "version": "0.0.1",
+  "description": "A Slack transport for Winston 3 that logs to a channel via webhooks.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheAppleFreak/winston-slack-webhook-transport.git"
+  },
+  "author": "TheAppleFreak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheAppleFreak/winston-slack-webhook-transport/issues"
+  },
+  "homepage": "https://github.com/TheAppleFreak/winston-slack-webhook-transport#readme",
+  "dependencies": {
+    "@slack/client": "^3.14.1",
+    "capitalize": "^1.0.0",
+    "winston-transport": "^3.0.1"
+  }
+}
