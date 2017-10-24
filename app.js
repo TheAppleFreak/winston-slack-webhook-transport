@@ -48,9 +48,9 @@ module.exports = class SlackHook extends Transport {
 
 		this.webhook.send(payload, (err, header, statusCode, body) => {
 			if (err) {
-				setImmediate(this.emit("error", err));
+				setImmediate(() => this.emit("error", err));
 			} else {
-				setImmediate(this.emit("logged", info));
+				setImmediate(() => this.emit("logged", info));
 			}
 		});
 
