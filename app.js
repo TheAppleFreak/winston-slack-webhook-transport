@@ -2,7 +2,6 @@
 
 const Transport = require("winston-transport");
 const IncomingWebhook = require("@slack/client").IncomingWebhook;
-const capitalize = require("capitalize");
 
 module.exports = class SlackHook extends Transport {
 	constructor(opts) {
@@ -10,7 +9,8 @@ module.exports = class SlackHook extends Transport {
 
 		opts = opts || {};
 		this.name = opts.name || "slackWebhook";
-		this.level = opts.level || "info";
+		// Do I really need the level parameter? Not sure.
+		// this.level = opts.level || "info";
 		this.formatter = opts.formatter || undefined;
 		
 		this.webhook = new IncomingWebhook(opts.webhookUrl);
@@ -41,16 +41,16 @@ module.exports = class SlackHook extends Transport {
 		if (this.formatter && typeof this.formatter === "function") {
 			payload.text = this.formatter(info);
 		} else {
-			payload.text = `${capitalize(info.level)}: ${info.message}`;
+			payload.text = `${info.level}: ${info.message}`;
 		}
 
 		payload.attachments = attachments;
 
 		this.webhook.send(payload, (err, header, statusCode, body) => {
 			if (err) {
-				this.emit("error", err);
+				setImmediate(this.emit("error", err));
 			} else {
-				this.emit("logged", info);
+				setImmediate(this.emit("logged", info));
 			}
 		});
 

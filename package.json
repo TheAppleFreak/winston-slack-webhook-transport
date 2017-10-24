@@ -1,6 +1,6 @@
 {
   "name": "winston-slack-webhook-transport",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Slack transport for Winston 3 that logs to a channel via webhooks.",
   "main": "app.js",
   "scripts": {
@@ -18,7 +18,6 @@
   "homepage": "https://github.com/TheAppleFreak/winston-slack-webhook-transport#readme",
   "dependencies": {
     "@slack/client": "^3.14.1",
-    "capitalize": "^1.0.0",
     "winston-transport": "^3.0.1"
   }
 }
