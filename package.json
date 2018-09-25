@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/TheAppleFreak/winston-slack-webhook-transport#readme",
   "dependencies": {
-    "@slack/client": "^3.14.1",
+    "@slack/client": "^4.6.0",
     "winston-transport": "^3.0.1"
   }
 }
