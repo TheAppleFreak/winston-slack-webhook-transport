@@ -8,18 +8,18 @@ module.exports = class SlackHook extends Transport {
     super(opts)
 
     opts = opts || {}
+
     this.name = opts.name || 'slackWebhook'
 		// Do I really need the level parameter? Not sure.
 		// this.level = opts.level || "info";
     this.formatter = opts.formatter || undefined
-
     this.webhook = new IncomingWebhook(opts.webhookUrl)
     this.channel = opts.channel || ''
     this.username = opts.username || ''
-    this.icon_emoji = opts.iconEmoji || ''
-    this.icon_url = opts.iconUrl || ''
-    this.unfurl_links = opts.unfurlLinks || ''
-    this.markdown = opts.markdown || true
+    this.iconEmoji = opts.iconEmoji || ''
+    this.iconUrl = opts.iconUrl || ''
+    this.unfurlLinks = opts.unfurlLinks || false
+    this.markdown = opts.markdown || false
   }
 
   log (info, callback) {

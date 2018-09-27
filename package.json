@@ -1,10 +1,11 @@
 {
   "name": "winston-slack-webhook-transport",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A Slack transport for Winston 3 that logs to a channel via webhooks.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run mocha",
+    "mocha": "mocha --require babel-core/register \"./**/*.spec.js\""
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,14 @@
   "dependencies": {
     "@slack/client": "^4.6.0",
     "winston-transport": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-rewire": "^1.2.0",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "sinon": "^6.3.4",
+    "sinon-chai": "^3.2.0"
   }
 }
