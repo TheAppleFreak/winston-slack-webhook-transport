@@ -1,8 +1,8 @@
 # winston-slack-webhook-transport
 
-A Slack transport for Winston 3 that logs to a channel via webhooks. 
+A Slack transport for Winston 3 that logs to a channel via webhooks.
 
-## Installation 
+## Installation
 
 ```
 npm install winston winston-slack-webhook-transport
@@ -12,7 +12,7 @@ npm install winston winston-slack-webhook-transport
 
 ### Set up with transports
 
-```javascript 
+```javascript
 const winston = require("winston");
 const SlackHook = require("winston-slack-webhook-transport");
 
@@ -48,12 +48,12 @@ logger.add(SlackHook, {webhookUrl: "https://hooks.slack.com/services/xxx/xxx/xxx
 * `iconUrl` - Status icon to post message with. (interchangeable with `iconEmoji`)
 * `formatter` - Custom function to format messages with. By default, messages use the format of `[Level]: [message]`.
 * `level` - Level to log. Global settings will apply if this is blank.
-* `unfurlLinks` - Enables or disables [link unfurling.](https://api.slack.com/docs/message-attachments#unfurling) (Default: true)
-* `markdown` - Enables or disables [Markdown formatting.](https://api.slack.com/docs/message-formatting#disabling_markup_processing) (Default: true)
+* `unfurlLinks` - Enables or disables [link unfurling.](https://api.slack.com/docs/message-attachments#unfurling) (Default: false)
+* `markdown` - Enables or disables [Markdown formatting.](https://api.slack.com/docs/message-formatting#disabling_markup_processing) (Default: false)
 
 ### Attachments
 
-`winston-slack-webhook-transport` supports the ability to [create attachments on its messages.](https://api.slack.com/docs/message-attachments) To do this, supply an array of objects after the message parameter. 
+`winston-slack-webhook-transport` supports the ability to [create attachments on its messages.](https://api.slack.com/docs/message-attachments) To do this, supply an array of objects after the message parameter.
 
 ```javascript
 const winston = require("winston");
