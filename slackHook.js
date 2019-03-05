@@ -30,7 +30,7 @@ module.exports = class SlackHook extends Transport {
       icon_emoji: this.iconEmoji,
       icon_url: this.iconUrl,
       unfurl_links: this.unfurlLinks,
-      unfurl_media: this.unfurl_media,
+      unfurl_media: this.unfurlMedia,
       mrkdwn: this.mrkdwn
     }
 

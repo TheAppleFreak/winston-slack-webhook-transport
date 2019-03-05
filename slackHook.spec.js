@@ -1,20 +1,20 @@
 import sinon from 'sinon';
 import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
+import request from 'request';
 import SlackHook from './slackHook';
 
 chai.use(sinonChai);
 
 const sandbox = sinon.createSandbox();
 
-const fakeRequest = sandbox.stub();
-const fakeRequestClass = sinon.spy(() => fakeRequest);
+const fakeRequest = sandbox.stub(request);
 const fakeTransport = { winston: 'fake' };
 const fakeTransportClass = sinon.spy(() => fakeTransport);
 
 const dependencies = {
   Transport: fakeTransport,
-  request: fakeRequestClass
+  request: fakeRequest
 };
 
 const fakeOpts = {
@@ -75,9 +75,9 @@ describe('(class) SlackHook', function () {
       icon_emoji: fakeOpts.iconEmoji,
       icon_url: fakeOpts.iconUrl,
       unfurl_links: fakeOpts.unfurlLinks,
+      unfurl_media: fakeOpts.unfurlMedia,
       mrkdwn: fakeOpts.mrkdwn,
-      text: 'undefined: undefined',
-      attachments: []
+      text: 'undefined: undefined'
     };
 
     const fakeSlackHookLog = fakeSlackHook.log({}, fakeCb);

@@ -1,6 +1,6 @@
 # winston-slack-webhook-transport
 
-A Slack transport for Winston 3 that logs to a channel via webhooks.
+A Slack transport for Winston 3+ that logs to a channel via webhooks.
 
 ## Installation
 
@@ -46,38 +46,47 @@ logger.add(SlackHook, {webhookUrl: "https://hooks.slack.com/services/xxx/xxx/xxx
 * `username` - Username to post message with.
 * `iconEmoji` - Status icon to post message with. (interchangeable with `iconUrl`)
 * `iconUrl` - Status icon to post message with. (interchangeable with `iconEmoji`)
-* `formatter` - Custom function to format messages with. By default, messages use the format of `[Level]: [message]`.
+* `formatter` - Custom function to format messages with. This function accepts the `info` object ([see Winston documentation](https://github.com/winstonjs/winston#streams-objectmode-and-info-objects)) and must return an object with at least one of the following three keys: `text` (string), `attachments` (array of [attachment objects](https://api.slack.com/docs/message-attachments)), `blocks` (array of [layout block objects](https://api.slack.com/messaging/composing/layouts)). These will be used to structure the format of the logged Slack message. By default, messages will use the format of `[Level]: [message]` with no attachments or layout blocks.
 * `level` - Level to log. Global settings will apply if this is blank.
 * `unfurlLinks` - Enables or disables [link unfurling.](https://api.slack.com/docs/message-attachments#unfurling) (Default: false)
-* `markdown` - Enables or disables [Markdown formatting.](https://api.slack.com/docs/message-formatting#disabling_markup_processing) (Default: false)
+* `unfurlMedia` - Enables or disables [media unfurling.](https://api.slack.com/docs/message-link-unfurling) (Default: false)
+* `mrkdwn` - Enables or disables [`mrkdwn` formatting](https://api.slack.com/messaging/composing/formatting#basics) within attachments or layout blocks (Default: false)
 
-### Attachments
+### Message formatting
 
-`winston-slack-webhook-transport` supports the ability to [create attachments on its messages.](https://api.slack.com/docs/message-attachments) To do this, supply an array of objects after the message parameter.
+`winston-slack-webhook-transport` supports the ability to format messages using Slack's message layout features. To do this, supply a custom formatter that supplies the [requisite object structure](https://api.slack.com/messaging/composing/layouts) to create the desired layout.
 
 ```javascript
 const winston = require("winston");
 const SlackHook = require("winston-slack-webhook-transport");
-
+ 
 const logger = winston.createLogger({
-	level: "info",
-	transports: [
-		new SlackHook({
-			webhookUrl: "https://hooks.slack.com/services/xxx/xxx/xxx"
-		})
-	]
+    level: "info",
+    transports: [
+        new SlackHook({
+			webhookUrl: "https://hooks.slack.com/services/xxx/xxx/xxx",
+			formatter: info => {
+				return {
+					text: `${info.level}: ${info.message}`,
+					attachments: [
+						{
+							text: "Or don't pass anything. That's fine too"
+						}
+					],
+					blocks: [
+						{
+							type: "section",
+							text: {
+								type: "plain_text",
+								text: "You can pass more info to the formatter by supplying additional parameters in the logger call"
+							}
+						}
+					]
+				}
+			}
+        })
+    ]
 });
 
-let attachments = [
-	{
-		"color": "good",
-		"author_name": "TheAppleFreak",
-		"title": "Hello world",
-		"text": "...and here's the attachment text!"
-	}
-];
-
-logger.info("Here's the regular message text...", attachments);
+logger.info("Definitely try playing around with this.")
 ```
-
-For a complete list of properties, [please check the Slack API documentation.](https://api.slack.com/docs/message-attachments)
