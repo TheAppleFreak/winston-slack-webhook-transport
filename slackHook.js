@@ -48,12 +48,12 @@ module.exports = class SlackHook extends Transport {
 
     request.post({url: this.webhookUrl, json: payload}, (err, res, body) => {
       if (err) {
-        setImmediate(() => this.emit('error', err));
+        this.emit('error', err);
+        callback();
       } else {
-        setImmediate(() => this.emit('logged', info));
+        this.emit('logged', info);
+        callback();
       }
     });
-
-    callback();
   }
 }
