@@ -69,7 +69,7 @@ describe('(class) SlackHook', function () {
 
   it('log function gets called with correct params', function () {
     const fakeCb = sandbox.stub();
-    const fakePayload = { 
+    const fakePayload = {
       channel: fakeOpts.channel,
       username: fakeOpts.username,
       icon_emoji: fakeOpts.iconEmoji,
@@ -77,7 +77,8 @@ describe('(class) SlackHook', function () {
       unfurl_links: fakeOpts.unfurlLinks,
       unfurl_media: fakeOpts.unfurlMedia,
       mrkdwn: fakeOpts.mrkdwn,
-      text: 'undefined: undefined'
+      text: `undefined: undefined
+\`\`\`undefined\`\`\``
     };
 
     const fakeSlackHookLog = fakeSlackHook.log({}, fakeCb);

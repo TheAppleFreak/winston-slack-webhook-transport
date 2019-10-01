@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const Transport = require('winston-transport');
 const request = require('request');
@@ -10,8 +10,8 @@ module.exports = class SlackHook extends Transport {
     opts = opts || {};
 
     this.name = opts.name || 'slackWebhook';
-		// Do I really need the level parameter? Not sure.
-		// this.level = opts.level || "info";
+    // Do I really need the level parameter? Not sure.
+    this.level = opts.level || "info";
     this.webhookUrl = opts.webhookUrl;
     this.formatter = opts.formatter || undefined;
     this.channel = opts.channel || '';
@@ -21,6 +21,8 @@ module.exports = class SlackHook extends Transport {
     this.unfurlLinks = opts.unfurlLinks || false;
     this.unfurlMedia = opts.unfurlMedia || false;
     this.mrkdwn = opts.mrkdwn || false;
+
+    this.request = request.defaults({ proxy: opts.proxy });
   }
 
   log (info, callback) {
@@ -43,7 +45,7 @@ module.exports = class SlackHook extends Transport {
       payload.attachments = layout.attachments || undefined;
       payload.blocks = layout.blocks || undefined;
     } else {
-      payload.text = `${info.level}: ${info.message}`
+      payload.text = `${info.level}: ${info.message}\n\`\`\`${info.stack}\`\`\``;
     }
 
     request.post({url: this.webhookUrl, json: payload}, (err, res, body) => {
@@ -56,4 +58,4 @@ module.exports = class SlackHook extends Transport {
       }
     });
   }
-}
+};
