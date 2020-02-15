@@ -16,3 +16,10 @@
 ## 1.1.0 (2019/7/15)
 
 * Callback now triggers only after request completes (as per [Pull #4](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/4)).
+
+## 1.2.0 (2020/2/14)
+
+* Replaced [request](https://github.com/request/request) with [axios](https://github.com/axios/axios) now that [request has been deprecated.](https://github.com/request/request/issues/3142)
+* Changed tests to use [Jest](https://jestjs.io/)
+* Added proxy server support (as per [Pull #6](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/6))
+* Added TypeScript declaration file

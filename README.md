@@ -53,10 +53,13 @@ logger.add(SlackHook, {webhookUrl: "https://hooks.slack.com/services/xxx/xxx/xxx
 * `unfurlLinks` - Enables or disables [link unfurling.](https://api.slack.com/docs/message-attachments#unfurling) (Default: false)
 * `unfurlMedia` - Enables or disables [media unfurling.](https://api.slack.com/docs/message-link-unfurling) (Default: false)
 * `mrkdwn` - Enables or disables [`mrkdwn` formatting](https://api.slack.com/messaging/composing/formatting#basics) within attachments or layout blocks (Default: false)
+* `proxy` - Allows specifying a proxy server that [gets passed directly down to Axios](https://github.com/axios/axios#request-config) (Default: undefined)
 
 ### Message formatting
 
 `winston-slack-webhook-transport` supports the ability to format messages using Slack's message layout features. To do this, supply a custom formatter that supplies the [requisite object structure](https://api.slack.com/messaging/composing/layouts) to create the desired layout.
+
+Note that if you're using the `blocks` feature, supplying the `text` parameter will cause it to function as a fallback for surfaces that do not support blocks, such as IRC clients or notifications.
 
 ```javascript
 const winston = require("winston");

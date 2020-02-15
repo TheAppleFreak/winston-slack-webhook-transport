@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
 const Transport = require('winston-transport');
-const request = require('request');
+const axios = require('axios').default;
 
 module.exports = class SlackHook extends Transport {
   constructor (opts) {
@@ -10,8 +10,7 @@ module.exports = class SlackHook extends Transport {
     opts = opts || {};
 
     this.name = opts.name || 'slackWebhook';
-		// Do I really need the level parameter? Not sure.
-		// this.level = opts.level || "info";
+		this.level = opts.level || undefined;
     this.webhookUrl = opts.webhookUrl;
     this.formatter = opts.formatter || undefined;
     this.channel = opts.channel || '';
@@ -21,6 +20,10 @@ module.exports = class SlackHook extends Transport {
     this.unfurlLinks = opts.unfurlLinks || false;
     this.unfurlMedia = opts.unfurlMedia || false;
     this.mrkdwn = opts.mrkdwn || false;
+
+    this.axiosInstance = axios.create({
+      proxy: opts.proxy || undefined
+    });
   }
 
   log (info, callback) {
@@ -37,8 +40,8 @@ module.exports = class SlackHook extends Transport {
     if (this.formatter && typeof this.formatter === 'function') {
       let layout = this.formatter(info);
 
-      // Note: Apparently you can't have `text` and `blocks` on the same message
-      // If you're making a formatter, use blocks to simulate the vanilla text
+      // Note: Supplying `text` when `blocks` is also supplied will cause `text` 
+      // to be used as a fallback for clients/surfaces that don't suopport blocks
       payload.text = layout.text || undefined;
       payload.attachments = layout.attachments || undefined;
       payload.blocks = layout.blocks || undefined;
@@ -46,14 +49,14 @@ module.exports = class SlackHook extends Transport {
       payload.text = `${info.level}: ${info.message}`
     }
 
-    request.post({url: this.webhookUrl, json: payload}, (err, res, body) => {
-      if (err) {
-        this.emit('error', err);
-        callback();
-      } else {
-        this.emit('logged', info);
-        callback();
-      }
+    this.axiosInstance.post(this.webhookUrl, payload)
+    .then(response => {
+      this.emit('logged', info);
+      callback();
+    })
+    .catch(err => {
+      this.emit('error', err);
+      callback();
     });
   }
 }
