@@ -23,3 +23,7 @@
 * Changed tests to use [Jest](https://jestjs.io/)
 * Added proxy server support (as per [Pull #6](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/6))
 * Added TypeScript declaration file
+
+## 1.2.1 (2020/2/28)
+
+* Fixed TypeScript declaration file (as per [Issue #7](https://github.com/TheAppleFreak/winston-slack-webhook-transport/issues/7))

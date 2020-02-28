@@ -1,5 +1,11 @@
+import * as Transport from "winston-transport";
+
+declare class SlackHook extends Transport {
+    constructor (opts: SlackHook.SlackHookOptions);
+}
+
 declare namespace SlackHook {
-    interface Options {
+    interface SlackHookOptions {
         /**
          * Slack incoming webhook URL. This can be from a basic integration or a bot. 
          * 
@@ -53,7 +59,5 @@ declare namespace SlackHook {
         proxy?: any
     }
 }
-
-declare function SlackHook(config: SlackHook.Options): any;
 
 export = SlackHook;
