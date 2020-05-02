@@ -1,4 +1,4 @@
-import * as Transport from "winston-transport";
+import Transport = require("winston-transport");
 
 declare class SlackHook extends Transport {
     constructor (opts: SlackHook.SlackHookOptions);
