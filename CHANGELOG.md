@@ -35,3 +35,7 @@
 ## 1.2.3 (2020/5/7)
 
 * Updated dependencies
+
+## 1.2.4 (2020/5/7)
+
+* Updated yarn.lock so that Github would stop yelling at me about acorn being out of date
