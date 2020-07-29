@@ -30,7 +30,7 @@
 
 ## 1.2.2 (2020/5/7)
 
-* Fixed TypeScript declaration file (as per [Pull #9](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/9). Thanks @dmitryyacenko and @xr!
+* Fixed TypeScript declaration file (as per [Pull #9](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/9)). Thanks @dmitryyacenko and @xr!
 
 ## 1.2.3 (2020/5/7)
 
@@ -38,4 +38,14 @@
 
 ## 1.2.4 (2020/5/7)
 
-* Updated yarn.lock so that Github would stop yelling at me about acorn being out of date
+* Updated yarn.lock so that GitHub would stop yelling at me about acorn being out of date
+
+## 1.2.5 (2020/7/29)
+
+* Updated dependencies
+* Updated gitignore to latest Node version
+* Fixed error in README.md (as per [Pull #11](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/11)). Thanks @zachweinberg!
+* Changed all tabs in README.md to spaces for a more unified presentation
+* Changed `test` script to not point directly at the Jest executable anymore
+* Added Yarn 2 files
+* Updated yarn.lock so that GitHub would stop yelling at me about lodash being out of date

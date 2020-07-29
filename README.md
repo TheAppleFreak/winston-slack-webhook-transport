@@ -19,12 +19,12 @@ const winston = require("winston");
 const SlackHook = require("winston-slack-webhook-transport");
 
 const logger = winston.createLogger({
-	level: "info",
-	transports: [
-		new SlackHook({
-			webhookUrl: "https://hooks.slack.com/services/xxx/xxx/xxx"
-		})
-	]
+    level: "info",
+    transports: [
+        new SlackHook({
+            webhookUrl: "https://hooks.slack.com/services/xxx/xxx/xxx"
+        })
+    ]
 });
 
 logger.info("This should now appear on Slack");
@@ -59,7 +59,7 @@ logger.add(new SlackHook({ webhookUrl: "https://hooks.slack.com/services/xxx/xxx
 
 `winston-slack-webhook-transport` supports the ability to format messages using Slack's message layout features. To do this, supply a custom formatter that supplies the [requisite object structure](https://api.slack.com/messaging/composing/layouts) to create the desired layout.
 
-Note that if you're using the `blocks` feature, supplying the `text` parameter will cause it to function as a fallback for surfaces that do not support blocks, such as IRC clients or notifications.
+Note that if you're using the `blocks` feature, supplying the `text` parameter will cause it to function as a fallback for surfaces that do not support blocks, such as IRC clients or push notifications.
 
 ```javascript
 const winston = require("winston");
@@ -69,26 +69,26 @@ const logger = winston.createLogger({
     level: "info",
     transports: [
         new SlackHook({
-			webhookUrl: "https://hooks.slack.com/services/xxx/xxx/xxx",
-			formatter: info => {
-				return {
-					text: `${info.level}: ${info.message}`,
-					attachments: [
-						{
-							text: "Or don't pass anything. That's fine too"
-						}
-					],
-					blocks: [
-						{
-							type: "section",
-							text: {
-								type: "plain_text",
-								text: "You can pass more info to the formatter by supplying additional parameters in the logger call"
-							}
-						}
-					]
-				}
-			}
+            webhookUrl: "https://hooks.slack.com/services/xxx/xxx/xxx",
+            formatter: info => {
+                return {
+                    text: `${info.level}: ${info.message}`,
+                    attachments: [
+                        {
+                            text: "Or don't pass anything. That's fine too"
+                        }
+                    ],
+                    blocks: [
+                        {
+                            type: "section",
+                            text: {
+                                type: "plain_text",
+                                text: "You can pass more info to the formatter by supplying additional parameters in the logger call"
+                            }
+                        }
+                    ]
+                }
+            }
         })
     ]
 });
