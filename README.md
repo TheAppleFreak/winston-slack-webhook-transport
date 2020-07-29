@@ -38,7 +38,7 @@ const SlackHook = require("winston-slack-webhook-transport");
 
 const logger = winston.createLogger({});
 
-logger.add(SlackHook, {webhookUrl: "https://hooks.slack.com/services/xxx/xxx/xxx"});
+logger.add(new SlackHook({ webhookUrl: "https://hooks.slack.com/services/xxx/xxx/xxx" }));
 ```
 
 ### Options
