@@ -5,10 +5,6 @@ const fakeOpts = {
     name: 'totally-fake-slackhook',
     formatter: 'totally-fake-formatter',
     webhookUrl: 'https://totally.fake.url',
-    channel: '#totally-fake-channel',
-    username: 'totally-fake-username',
-    iconEmoji: ':totally-fake-emoji:',
-    iconUrl: 'https://totally.fake.icon.url',
     unfurlLinks: true,
     unfurlMedia: true,
     mrkdwn: true
@@ -29,10 +25,6 @@ it("checks if parameters are correct", () => {
     expect(fakeSlackHook.name).toEqual(fakeOpts.name);
     expect(fakeSlackHook.formatter).toEqual(fakeOpts.formatter);
     expect(fakeSlackHook.webhookUrl).toEqual(fakeOpts.webhookUrl);
-    expect(fakeSlackHook.channel).toEqual(fakeOpts.channel);
-    expect(fakeSlackHook.username).toEqual(fakeOpts.username);
-    expect(fakeSlackHook.iconEmoji).toEqual(fakeOpts.iconEmoji);
-    expect(fakeSlackHook.iconUrl).toEqual(fakeOpts.iconUrl);
     expect(fakeSlackHook.unfurlLinks).toEqual(fakeOpts.unfurlLinks);
     expect(fakeSlackHook.unfurlMedia).toEqual(fakeOpts.unfurlMedia);
     expect(fakeSlackHook.mrkdwn).toEqual(fakeOpts.mrkdwn);
@@ -42,10 +34,6 @@ it("checks if parameters are correct", () => {
 it("log function gets called with correct params", () => {
     const fakeCb = jest.fn();
     const fakePayload = {
-        channel: fakeOpts.channel,
-        username: fakeOpts.username,
-        icon_emoji: fakeOpts.iconEmoji,
-        icon_url: fakeOpts.iconUrl,
         unfurl_links: fakeOpts.unfurlLinks,
         unfurl_media: fakeOpts.unfurlMedia,
         mrkdwn: fakeOpts.mrkdwn,

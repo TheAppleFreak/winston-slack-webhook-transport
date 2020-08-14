@@ -13,10 +13,6 @@ module.exports = class SlackHook extends Transport {
 		this.level = opts.level || undefined;
     this.webhookUrl = opts.webhookUrl;
     this.formatter = opts.formatter || undefined;
-    this.channel = opts.channel || '';
-    this.username = opts.username || '';
-    this.iconEmoji = opts.iconEmoji || '';
-    this.iconUrl = opts.iconUrl || '';
     this.unfurlLinks = opts.unfurlLinks || false;
     this.unfurlMedia = opts.unfurlMedia || false;
     this.mrkdwn = opts.mrkdwn || false;
@@ -28,10 +24,6 @@ module.exports = class SlackHook extends Transport {
 
   log (info, callback) {
 		let payload = {
-      channel: this.channel,
-      username: this.username,
-      icon_emoji: this.iconEmoji,
-      icon_url: this.iconUrl,
       unfurl_links: this.unfurlLinks,
       unfurl_media: this.unfurlMedia,
       mrkdwn: this.mrkdwn

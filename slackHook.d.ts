@@ -7,30 +7,14 @@ declare class SlackHook extends Transport {
 declare namespace SlackHook {
     interface SlackHookOptions {
         /**
-         * Slack incoming webhook URL. This can be from a basic integration or a bot. 
+         * Slack incoming webhook URL. 
          * 
-         * You can get this from the "Incoming Webhooks" section of your Slack app settings: https://api.slack.com/apps
+         * {@link https://api.slack.com/messaging/webhooks Follow steps 1 through 3 at this link to create a new webhook if you don't already have one}.
          */
         webhookUrl: string;
         name?: string;
         /**
-         * Slack channel to post message to
-         */
-        channel?: string;
-        /**
-         * Username to post message with
-         */
-        username?: string;
-        /**
-         * Status icon to post message with. Interchangeable with `iconUrl`
-         */
-        iconEmoji?: string;
-        /**
-         * Status icon to post message with. Interchangeable with `iconEmoji`
-         */
-        iconUrl?: string;
-        /**
-         * Custom function to format messages with. This function accepts the **info** object ({@link https://github.com/winstonjs/winston/blob/master/README.md#streams-objectmode-and-info-objects see Winston documentation}) and must return an object with at least one of the following three keys: **text** (string), **attachments** (array of {@link https://api.slack.com/docs/message-attachments attachment objects}), **blocks** (array of {@link https://api.slack.com/messaging/composing/layouts layout block objects}). These will be used to structure the format of the logged Slack message. By default, messages will use the format of `[level]: [message]` with no attachments or layout blocks.
+         * Custom function to format messages with. This function accepts the `info` object ({@link https://github.com/winstonjs/winston/blob/master/README.md#streams-objectmode-and-info-objects see Winston documentation}) and must return an object with at least one of the following three keys: `text` (string), `attachments` (array of {@link https://api.slack.com/messaging/composing/layouts#attachments attachment objects}), `blocks` (array of {@link https://api.slack.com/messaging/composing/layouts#adding-blocks layout block objects}). These will be used to structure the format of the logged Slack message. By default, messages will use the format of `[level]: [message]` with no attachments or layout blocks.
          */
         formatter?: (info: {
             level: string,
@@ -38,19 +22,19 @@ declare namespace SlackHook {
             [key: string]: any
         }) => any;
         /**
-         * Level to log. Global settings will apply if this is blank.
+         * Level to log. Global settings will apply if left undefined.
          */
         level?: string;
         /**
-         * Enables or disables {@link https://api.slack.com/docs/message-attachments#unfurling link unfurling}. (Default: `false`)
+         * Enables or disables {@link https://api.slack.com/reference/messaging/link-unfurling#no_unfurling_please link unfurling}. (Default: `false`)
          */
         unfurlLinks?: boolean;
         /**
-         * Enables or disables {@link https://api.slack.com/docs/message-link-unfurling media unfurling}. (Default: `false`)
+         * Enables or disables {@link https://api.slack.com/reference/messaging/link-unfurling#no_unfurling_please media unfurling}. (Default: `false`)
          */
         unfurlMedia?: boolean;
         /**
-         * Enables or disables {@link https://api.slack.com/messaging/composing/formatting#basics `mrkdwn` formatting} within attachments or layout blocks. (Default: `false`)
+         * Enables or disables {@link https://api.slack.com/reference/surfaces/formatting#basics `mrkdwn` formatting} within attachments or layout blocks. (Default: `false`)
          */
         mrkdwn?: boolean;
         /**
