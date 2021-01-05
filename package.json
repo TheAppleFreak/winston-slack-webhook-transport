@@ -25,7 +25,7 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "winston-transport": "^4.4.0"
   },
   "devDependencies": {
