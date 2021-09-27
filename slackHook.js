@@ -32,6 +32,8 @@ module.exports = class SlackHook extends Transport {
     if (this.formatter && typeof this.formatter === 'function') {
       let layout = this.formatter(info);
 
+      if (!layout) return;
+
       // Note: Supplying `text` when `blocks` is also supplied will cause `text` 
       // to be used as a fallback for clients/surfaces that don't suopport blocks
       payload.text = layout.text || undefined;
