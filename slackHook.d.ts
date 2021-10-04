@@ -5,6 +5,18 @@ declare class SlackHook extends Transport {
 }
 
 declare namespace SlackHook {
+    interface TransformableInfo {
+        level: string;
+        message: string;
+        [key: string]: any;
+    }
+
+    interface SlackMessage {
+        text?: string
+        attachments?: any[]
+        blocks?: any[]
+    }
+
     interface SlackHookOptions {
         /**
          * Slack incoming webhook URL. 
@@ -16,11 +28,7 @@ declare namespace SlackHook {
         /**
          * Custom function to format messages with. This function accepts the `info` object ({@link https://github.com/winstonjs/winston/blob/master/README.md#streams-objectmode-and-info-objects see Winston documentation}) and must return an object with at least one of the following three keys: `text` (string), `attachments` (array of {@link https://api.slack.com/messaging/composing/layouts#attachments attachment objects}), `blocks` (array of {@link https://api.slack.com/messaging/composing/layouts#adding-blocks layout block objects}). These will be used to structure the format of the logged Slack message. By default, messages will use the format of `[level]: [message]` with no attachments or layout blocks.
          */
-        formatter?: (info: {
-            level: string,
-            message: string,
-            [key: string]: any
-        }) => any;
+        formatter?: (info: TransformableInfo) => SlackMessage | false;
         /**
          * Level to log. Global settings will apply if left undefined.
          */
