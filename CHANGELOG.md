@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 2.1.0 (2021/10/4)
+
+* You can now return `false` in the formatter function to prevent the plugin from posting a message to Slack. This functionality is courtesy of [Pull #14](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/14), which closes [Issue #12](https://github.com/TheAppleFreak/winston-slack-webhook-transport/issues/12) in the process. Thanks @iedmrc and @daxadal!
+* Updated documentation and typings to reflect the above change.
+* Removed Yarn as the package manager in favor of using NPM instead. 
+* Set up Github Actions to simplify the process of updating the package on NPM in the future.
+* Updated copyright year in LICENSE. Probably should have done that about 10 months ago... ¯\\_(ツ)_/¯
+* Updated dependencies
+
 ## 2.0.0 (2020/8/14)
 
 **WARNING**: This is a potentially **BREAKING CHANGE**.
