@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.2.2 (2022/10/6)
+
+* Reverted axios dependency back to `^0.22.0` due to unforseen issues. This closes [Issue #21](https://github.com/TheAppleFreak/winston-slack-webhook-transport/issues/21).
+* Deprecated v2.2.0 and v2.2.1 for the above reason.
+
 ## 2.2.1 (2022/10/6)
 
 * Realized that I hadn't quite proofread the code in 2.2.0 as closely as I should have, and that it worked in a different way than I expected. Updated the code and documentation to reflect that you can override the properties in both the constructor as well as in the formatter to achieve the same result.
