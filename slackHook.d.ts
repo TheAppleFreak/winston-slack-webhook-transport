@@ -15,6 +15,10 @@ declare namespace SlackHook {
         text?: string
         attachments?: any[]
         blocks?: any[]
+        icon_emoji?: string
+        username?: string
+        icon_url?: string
+        channel?: string
     }
 
     interface SlackHookOptions {

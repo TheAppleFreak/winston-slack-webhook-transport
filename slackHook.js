@@ -35,10 +35,10 @@ module.exports = class SlackHook extends Transport {
       if (!layout) return;
 
       // Note: Supplying `text` when `blocks` is also supplied will cause `text` 
-      // to be used as a fallback for clients/surfaces that don't suopport blocks
-      payload.text = layout.text || undefined;
-      payload.attachments = layout.attachments || undefined;
-      payload.blocks = layout.blocks || undefined;
+      // to be used as a fallback for clients/surfaces that don't suopport blocks   
+      Object.keys(layout).forEach(key => {
+        payload[key] = layout[key];
+      });
     } else {
       payload.text = `${info.level}: ${info.message}`
     }
