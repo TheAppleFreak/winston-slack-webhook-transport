@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.2.1 (2022/10/6)
+
+* Realized that I hadn't quite proofread the code in 2.2.0 as closely as I should have, and that it worked in a different way than I expected. Updated the code and documentation to reflect that you can override the properties in both the constructor as well as in the formatter to achieve the same result.
+
 ## 2.2.0 (2022/10/6)
 
 * Readded the `channel`, `username`, `iconEmoji`, and `iconUrl` properties to the constructor and typings. It appears that [Slack seems to have reversed course from how things worked previously, allowing the use of these properties once again](https://api.slack.com/legacy/custom-integrations/messaging/webhooks#legacy-customizations). This change is courtesy of [Pull #19](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/19). Thanks @janpieterz!

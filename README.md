@@ -50,10 +50,10 @@ logger.add(new SlackHook({ webhookUrl: "https://hooks.slack.com/services/xxx/xxx
 * `unfurlMedia` - Enables or disables [media unfurling.](https://api.slack.com/reference/messaging/link-unfurling#no_unfurling_please) (Default: `false`)
 * `mrkdwn` - Enables or disables [`mrkdwn` formatting](https://api.slack.com/reference/surfaces/formatting#basics) within attachments or layout blocks (Default: `false`)
 * `proxy` - Allows specifying a proxy server that [gets passed directly down to Axios](https://github.com/axios/axios#request-config) (Default: `undefined`)
-* `channel` - Overrides the webhook's default channel. This should be a channel ID.
-* `username` - Overrides the webhook's default username.
-* `iconEmoji` - An [emoji code string](https://www.webpagefx.com/tools/emoji-cheat-sheet/) to use in place of the default icon. (Interchangeable with `iconUrl`)
-* `iconUrl` - An icon image URL string to use in place of the default icon. Interchangeable with `iconEmoji`.
+* `channel` - Overrides the webhook's default channel. This should be a channel ID. (Default: `undefined`)
+* `username` - Overrides the webhook's default username. (Default: `undefined`)
+* `iconEmoji` - An [emoji code string](https://www.webpagefx.com/tools/emoji-cheat-sheet/) to use in place of the default icon. (Interchangeable with `iconUrl`) (Default: `undefined`)
+* `iconUrl` - An icon image URL string to use in place of the default icon. Interchangeable with `iconEmoji`. (Default: `undefined`)
 
 ### Message formatting
 
@@ -61,7 +61,9 @@ logger.add(new SlackHook({ webhookUrl: "https://hooks.slack.com/services/xxx/xxx
 
 If for some reason you don't want to send a message to Slack, you can also return `false` to prevent the log message from being sent.
 
-Note that if you're using Block Kit using either the `attachments` or `blocks` keys, the `text` parameter will function as a fallback for surfaces that do not support Block Kit, such as IRC clients or push notifications. It is recommended to include `text` when possible in these cases.
+Formatters can also override the channel the message is posted to, username, and icon by defining the properties `channel`, `username`, `iconEmoji`, or `iconUrl` in the same object structure. These will override any options set in the transport constructor. 
+
+Note that if you're using Block Kit using either the `attachments` or `blocks` keys, the `text` parameter will function as a fallback for surfaces that do not support Block Kit, such as push notifications. It is recommended to include `text` when possible in these cases.
 
 ```javascript
 const winston = require("winston");

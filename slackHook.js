@@ -16,6 +16,10 @@ module.exports = class SlackHook extends Transport {
     this.unfurlLinks = opts.unfurlLinks || false;
     this.unfurlMedia = opts.unfurlMedia || false;
     this.mrkdwn = opts.mrkdwn || false;
+    this.channel = opts.channel || '';
+    this.username = opts.username || '';
+    this.iconEmoji = opts.iconEmoji || '';
+    this.iconUrl = opts.iconUrl || '';
 
     this.axiosInstance = axios.create({
       proxy: opts.proxy || undefined
@@ -26,7 +30,11 @@ module.exports = class SlackHook extends Transport {
 		let payload = {
       unfurl_links: this.unfurlLinks,
       unfurl_media: this.unfurlMedia,
-      mrkdwn: this.mrkdwn
+      mrkdwn: this.mrkdwn,
+      channel: this.channel,
+      username: this.username,
+      icon_emoji: this.iconEmoji,
+      icon_url: this.iconUrl
     }
 
     if (this.formatter && typeof this.formatter === 'function') {

@@ -6,6 +6,10 @@ describe ("Standard options", () => {
         name: 'totally-fake-slackhook',
         formatter: 'totally-fake-formatter',
         webhookUrl: 'https://totally.fake.url',
+        channel: '#totally-fake-channel',
+        username: 'totally-fake-username',
+        iconEmoji: ':totally-fake-emoji:',
+        iconUrl: 'https://totally.fake.icon.url',
         unfurlLinks: true,
         unfurlMedia: true,
         mrkdwn: true
@@ -30,6 +34,10 @@ describe ("Standard options", () => {
         expect(fakeSlackHook.unfurlLinks).toEqual(fakeOpts.unfurlLinks);
         expect(fakeSlackHook.unfurlMedia).toEqual(fakeOpts.unfurlMedia);
         expect(fakeSlackHook.mrkdwn).toEqual(fakeOpts.mrkdwn);
+        expect(fakeSlackHook.channel).toEqual(fakeOpts.channel);
+        expect(fakeSlackHook.username).toEqual(fakeOpts.username);
+        expect(fakeSlackHook.iconEmoji).toEqual(fakeOpts.iconEmoji);
+        expect(fakeSlackHook.iconUrl).toEqual(fakeOpts.iconUrl);
         expect(mockAxios.create).toHaveBeenCalledTimes(1);
     });
 
@@ -38,6 +46,10 @@ describe ("Standard options", () => {
         const fakePayload = {
             unfurl_links: fakeOpts.unfurlLinks,
             unfurl_media: fakeOpts.unfurlMedia,
+            channel: fakeOpts.channel,
+            username: fakeOpts.username,
+            icon_emoji: fakeOpts.iconEmoji,
+            icon_url: fakeOpts.iconUrl,
             mrkdwn: fakeOpts.mrkdwn,
             text: 'undefined: undefined'
         };
@@ -58,6 +70,10 @@ describe ("Standard options with custom formatter", () => {
         name: 'totally-fake-slackhook',
         formatter: fakeFormatter,
         webhookUrl: 'https://totally.fake.url',
+        channel: '#totally-fake-channel',
+        username: 'totally-fake-username',
+        iconEmoji: ':totally-fake-emoji:',
+        iconUrl: 'https://totally.fake.icon.url',
         unfurlLinks: true,
         unfurlMedia: true,
         mrkdwn: true
@@ -82,6 +98,10 @@ describe ("Standard options with custom formatter", () => {
         expect(fakeSlackHook.unfurlLinks).toEqual(fakeOpts.unfurlLinks);
         expect(fakeSlackHook.unfurlMedia).toEqual(fakeOpts.unfurlMedia);
         expect(fakeSlackHook.mrkdwn).toEqual(fakeOpts.mrkdwn);
+        expect(fakeSlackHook.channel).toEqual(fakeOpts.channel);
+        expect(fakeSlackHook.username).toEqual(fakeOpts.username);
+        expect(fakeSlackHook.iconEmoji).toEqual(fakeOpts.iconEmoji);
+        expect(fakeSlackHook.iconUrl).toEqual(fakeOpts.iconUrl);
         expect(mockAxios.create).toHaveBeenCalledTimes(1);
     });
 
@@ -92,6 +112,10 @@ describe ("Standard options with custom formatter", () => {
             unfurl_links: fakeOpts.unfurlLinks,
             unfurl_media: fakeOpts.unfurlMedia,
             mrkdwn: fakeOpts.mrkdwn,
+            channel: fakeOpts.channel,
+            username: fakeOpts.username,
+            icon_emoji: fakeOpts.iconEmoji,
+            icon_url: fakeOpts.iconUrl,
             text: 'Custom message: undefined'
         };
 
@@ -113,6 +137,10 @@ describe ("Custom options with custom formatter", () => {
         name: 'totally-fake-slackhook',
         formatter: fakeFormatter,
         webhookUrl: 'https://totally.fake.url',
+        channel: '#totally-fake-channel',
+        username: 'totally-fake-username',
+        iconEmoji: ':totally-fake-emoji:',
+        iconUrl: 'https://totally.fake.icon.url',
         unfurlLinks: true,
         unfurlMedia: true,
         mrkdwn: true
@@ -161,6 +189,10 @@ describe ("Standard options with formatter that filters out all messages", () =>
         name: 'totally-fake-slackhook',
         formatter: fakeFormatter,
         webhookUrl: 'https://totally.fake.url',
+        channel: '#totally-fake-channel',
+        username: 'totally-fake-username',
+        iconEmoji: ':totally-fake-emoji:',
+        iconUrl: 'https://totally.fake.icon.url',
         unfurlLinks: true,
         unfurlMedia: true,
         mrkdwn: true
@@ -185,6 +217,10 @@ describe ("Standard options with formatter that filters out all messages", () =>
         expect(fakeSlackHook.unfurlLinks).toEqual(fakeOpts.unfurlLinks);
         expect(fakeSlackHook.unfurlMedia).toEqual(fakeOpts.unfurlMedia);
         expect(fakeSlackHook.mrkdwn).toEqual(fakeOpts.mrkdwn);
+        expect(fakeSlackHook.channel).toEqual(fakeOpts.channel);
+        expect(fakeSlackHook.username).toEqual(fakeOpts.username);
+        expect(fakeSlackHook.iconEmoji).toEqual(fakeOpts.iconEmoji);
+        expect(fakeSlackHook.iconUrl).toEqual(fakeOpts.iconUrl);
         expect(mockAxios.create).toHaveBeenCalledTimes(1);
     });
 
@@ -193,6 +229,10 @@ describe ("Standard options with formatter that filters out all messages", () =>
         const fakePayload = {
             unfurl_links: fakeOpts.unfurlLinks,
             unfurl_media: fakeOpts.unfurlMedia,
+            channel: fakeOpts.channel,
+            username: fakeOpts.username,
+            icon_emoji: fakeOpts.iconEmoji,
+            icon_url: fakeOpts.iconUrl,
             mrkdwn: fakeOpts.mrkdwn,
             text: 'undefined: undefined'
         };
