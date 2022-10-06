@@ -52,7 +52,23 @@ declare namespace SlackHook {
         /**
          * Allows specifying a proxy server that {@link https://github.com/axios/axios#request-config gets passed directly down to Axios} (Default: `undefined`)
          */
-        proxy?: any
+        proxy?: any;
+        /**
+         * Overrides the webhook's default channel. This should be a channel ID. (Default: `undefined`)
+         */
+        channel?: string;
+         /**
+         * Overrides the webhook's default username. (Default: `undefined`)
+         */
+        username?: string;
+        /**
+         * An {@link https://www.webpagefx.com/tools/emoji-cheat-sheet/ emoji code string} to use in place of the default icon. Interchangeable with `iconUrl`. (Default: `undefined`)
+         */
+        iconEmoji?: string;
+         /**
+         * An icon image URL string to use in place of the default icon. Interchangeable with `iconEmoji`. (Default: `undefined`)
+         */
+        iconUrl?: string;
     }
 }
 

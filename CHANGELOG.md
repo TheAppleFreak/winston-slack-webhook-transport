@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.2.0 (2022/10/6)
+
+* Readded the `channel`, `username`, `iconEmoji`, and `iconUrl` properties to the constructor and typings. It appears that [Slack seems to have reversed course from how things worked previously, allowing the use of these properties once again](https://api.slack.com/legacy/custom-integrations/messaging/webhooks#legacy-customizations). This change is courtesy of [Pull #19](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/19). Thanks @janpieterz!
+* Updated copyright year in LICENSE. It seems I have a very good track record of doing this on time. 
+* Updated dependencies
+
 ## 2.1.0 (2021/10/4)
 
 * You can now return `false` in the formatter function to prevent the plugin from posting a message to Slack. This functionality is courtesy of [Pull #14](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/14), which closes [Issue #12](https://github.com/TheAppleFreak/winston-slack-webhook-transport/issues/12) in the process. Thanks @iedmrc and @daxadal!

@@ -50,6 +50,10 @@ logger.add(new SlackHook({ webhookUrl: "https://hooks.slack.com/services/xxx/xxx
 * `unfurlMedia` - Enables or disables [media unfurling.](https://api.slack.com/reference/messaging/link-unfurling#no_unfurling_please) (Default: `false`)
 * `mrkdwn` - Enables or disables [`mrkdwn` formatting](https://api.slack.com/reference/surfaces/formatting#basics) within attachments or layout blocks (Default: `false`)
 * `proxy` - Allows specifying a proxy server that [gets passed directly down to Axios](https://github.com/axios/axios#request-config) (Default: `undefined`)
+* `channel` - Overrides the webhook's default channel. This should be a channel ID.
+* `username` - Overrides the webhook's default username.
+* `iconEmoji` - An [emoji code string](https://www.webpagefx.com/tools/emoji-cheat-sheet/) to use in place of the default icon. (Interchangeable with `iconUrl`)
+* `iconUrl` - An icon image URL string to use in place of the default icon. Interchangeable with `iconEmoji`.
 
 ### Message formatting
 
@@ -91,5 +95,5 @@ const logger = winston.createLogger({
     ]
 });
 
-logger.info("Definitely try playing around with this.")
+logger.info("Definitely try playing around with this.");
 ```
