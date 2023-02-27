@@ -323,7 +323,6 @@ describe ("Standard options with custom formatter with ignoring messages", () =>
 
 describe ("Test winton 3.x.x integration", () => {
     const fakeFormatter = jest.fn((info) => {
-        console.log('info', info.message, info.ignoreMe);
         if (!info.ignoreMe) {
             return { text: `Custom message: ${info.message}` };
         }
