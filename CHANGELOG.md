@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.2.3 (2023/3/3)
+
+* Fixed a bug preventing the ability to filter log messages in the formatter. This change is courtesy of [Pull #23](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/23), which closes [Issue #15](https://github.com/TheAppleFreak/winston-slack-webhook-transport/issues/15) in the process. Thanks @ArturAralin and @jbojbo!
+* Updated copyright year in LICENSE. I need to automate this.
+
 ## 2.2.2 (2022/10/6)
 
 * Reverted axios dependency back to `^0.22.0` due to unforseen issues. This closes [Issue #21](https://github.com/TheAppleFreak/winston-slack-webhook-transport/issues/21).

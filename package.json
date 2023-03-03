@@ -1,6 +1,6 @@
 {
   "name": "winston-slack-webhook-transport",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "A Slack transport for Winston 3 that logs to a channel via webhooks.",
   "main": "slackHook.js",
   "typings": "./slackHook.d.ts",
