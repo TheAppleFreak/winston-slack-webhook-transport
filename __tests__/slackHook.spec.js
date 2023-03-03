@@ -1,5 +1,6 @@
 import mockAxios from "../__mocks__/axios";
 import SlackHook from "../slackHook";
+import { createLogger } from 'winston';
 
 describe ("Standard options", () => {
     const fakeOpts = {
@@ -242,5 +243,166 @@ describe ("Standard options with formatter that filters out all messages", () =>
         expect(fakeSlackHook.axiosInstance.post).toHaveBeenCalledTimes(0);
 
         expect(fakeFormatter).toHaveBeenCalledTimes(1);
+    })
+})
+
+describe ("Standard options with custom formatter with ignoring messages", () => {
+    const fakeFormatter = jest.fn((info) => {
+        if (!info.ignoreMe) {
+            return { text: `Custom message: ${info.message}` };
+        }
+    });
+
+    const fakeOpts = {
+        name: 'totally-fake-slackhook',
+        formatter: fakeFormatter,
+        webhookUrl: 'https://totally.fake.url',
+        channel: '#totally-fake-channel',
+        username: 'totally-fake-username',
+        iconEmoji: ':totally-fake-emoji:',
+        iconUrl: 'https://totally.fake.icon.url',
+        unfurlLinks: true,
+        unfurlMedia: true,
+        mrkdwn: true
+    };
+
+    let fakeSlackHook;
+
+    beforeAll(() => {
+        jest.clearAllMocks();
+        fakeSlackHook = new SlackHook(fakeOpts);
+    });
+
+    beforeEach(() => {
+        jest.resetModules();
+    })
+
+    it("checks if parameters are correct", () => {
+        expect(fakeSlackHook).toBeInstanceOf(SlackHook);
+        expect(fakeSlackHook.name).toEqual(fakeOpts.name);
+        expect(fakeSlackHook.formatter).toEqual(fakeOpts.formatter);
+        expect(fakeSlackHook.webhookUrl).toEqual(fakeOpts.webhookUrl);
+        expect(fakeSlackHook.unfurlLinks).toEqual(fakeOpts.unfurlLinks);
+        expect(fakeSlackHook.unfurlMedia).toEqual(fakeOpts.unfurlMedia);
+        expect(fakeSlackHook.mrkdwn).toEqual(fakeOpts.mrkdwn);
+        expect(fakeSlackHook.channel).toEqual(fakeOpts.channel);
+        expect(fakeSlackHook.username).toEqual(fakeOpts.username);
+        expect(fakeSlackHook.iconEmoji).toEqual(fakeOpts.iconEmoji);
+        expect(fakeSlackHook.iconUrl).toEqual(fakeOpts.iconUrl);
+        expect(mockAxios.create).toHaveBeenCalledTimes(1);
+    });
+
+    it("log function gets called with correct params", () => {
+        const fakeCb = jest.fn();
+        const fakePayload = {
+            attachments: undefined,
+            unfurl_links: fakeOpts.unfurlLinks,
+            unfurl_media: fakeOpts.unfurlMedia,
+            mrkdwn: fakeOpts.mrkdwn,
+            channel: fakeOpts.channel,
+            username: fakeOpts.username,
+            icon_emoji: fakeOpts.iconEmoji,
+            icon_url: fakeOpts.iconUrl,
+            text: 'Custom message: undefined'
+        };
+
+        fakeSlackHook.log({
+            ignoreMe: true,
+        }, fakeCb);
+        fakeSlackHook.log({}, fakeCb);
+
+        expect(fakeSlackHook.axiosInstance.post).toHaveBeenCalledTimes(1);
+        expect(fakeSlackHook.axiosInstance.post).toHaveBeenCalledWith(
+            fakeOpts.webhookUrl,
+            fakePayload
+        );
+
+        expect(fakeFormatter).toHaveBeenCalledTimes(2);
+    })
+})
+
+describe ("Test winton 3.x.x integration", () => {
+    const fakeFormatter = jest.fn((info) => {
+        if (!info.ignoreMe) {
+            return { text: `Custom message: ${info.message}` };
+        }
+    });
+
+    const fakeOpts = {
+        name: 'totally-fake-slackhook',
+        formatter: fakeFormatter,
+        webhookUrl: 'https://totally.fake.url',
+        channel: '#totally-fake-channel',
+        username: 'totally-fake-username',
+        iconEmoji: ':totally-fake-emoji:',
+        iconUrl: 'https://totally.fake.icon.url',
+        unfurlLinks: true,
+        unfurlMedia: true,
+        mrkdwn: true
+    };
+
+    let fakeWinston;
+    let fakeSlackHook;
+
+    beforeAll(() => {
+        jest.clearAllMocks();
+        fakeSlackHook = new SlackHook(fakeOpts);
+        fakeWinston = createLogger({
+            transports: [fakeSlackHook],
+        });
+    });
+
+    beforeEach(() => {
+        jest.resetModules();
+    })
+
+    it("checks if parameters are correct", () => {
+        expect(fakeSlackHook).toBeInstanceOf(SlackHook);
+        expect(fakeSlackHook.name).toEqual(fakeOpts.name);
+        expect(fakeSlackHook.formatter).toEqual(fakeOpts.formatter);
+        expect(fakeSlackHook.webhookUrl).toEqual(fakeOpts.webhookUrl);
+        expect(fakeSlackHook.unfurlLinks).toEqual(fakeOpts.unfurlLinks);
+        expect(fakeSlackHook.unfurlMedia).toEqual(fakeOpts.unfurlMedia);
+        expect(fakeSlackHook.mrkdwn).toEqual(fakeOpts.mrkdwn);
+        expect(fakeSlackHook.channel).toEqual(fakeOpts.channel);
+        expect(fakeSlackHook.username).toEqual(fakeOpts.username);
+        expect(fakeSlackHook.iconEmoji).toEqual(fakeOpts.iconEmoji);
+        expect(fakeSlackHook.iconUrl).toEqual(fakeOpts.iconUrl);
+        expect(mockAxios.create).toHaveBeenCalledTimes(1);
+    });
+
+    it("log function gets called with correct params", () => {
+        const fakeCb = jest.fn();
+        const fakePayload = {
+            attachments: undefined,
+            unfurl_links: fakeOpts.unfurlLinks,
+            unfurl_media: fakeOpts.unfurlMedia,
+            mrkdwn: fakeOpts.mrkdwn,
+            channel: fakeOpts.channel,
+            username: fakeOpts.username,
+            icon_emoji: fakeOpts.iconEmoji,
+            icon_url: fakeOpts.iconUrl,
+            text: 'Custom message: Logged'
+        };
+
+        fakeWinston.info(
+            'Me ignored',
+            { ignoreMe: true },
+            fakeCb
+        );
+
+        fakeWinston.info(
+            'Logged',
+            { ignoreMe: false },
+            fakeCb
+        );
+
+        expect(fakeSlackHook.axiosInstance.post).toHaveBeenCalledTimes(1);
+        expect(fakeSlackHook.axiosInstance.post).toHaveBeenCalledWith(
+            fakeOpts.webhookUrl,
+            fakePayload
+        );
+
+        expect(fakeFormatter).toHaveBeenCalledTimes(2);
     })
 })
