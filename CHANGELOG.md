@@ -1,5 +1,18 @@
 # CHANGELOG
 
+(all dates use the ISO-8601 format, which is YYYY/MM/DD)
+
+## 2.3.0 (2023/4/5)
+
+* Added an option (`emitAxiosErrors`) to enable or disable emitting errors if Axios throws an error. Previously, if Axios returned an error for any reason, this would emit an error, which if unhandled would be treated as an unhandled exception. This includes potentially transient issues, such as if Slack would return an error for any reason, including API outages or `429 Too Many Requests` errors. This option requires the user to explicitly opt into this behavior, and is `false` by default. This closes [Issue #24](https://github.com/TheAppleFreak/winston-slack-webhook-transport/issues/24). Thanks @jbojbo for bringing this to my attention!
+
+  When I had initially added the code that would do that, I was under the impression this would log the Slack error to Winston itself as an error, [but after rereading the relevant documentation](https://github.com/winstonjs/winston#awaiting-logs-to-be-written-in-winston) I realized this was not the case. 
+* Minor change to the `log()` function to make it an async function, which simplifies some minor aspects of unit testing. This should have no impact on using the transport within Winston. 
+* Updated tests to check the error handling behavior. 
+* Added new option to the type definitions. 
+* Added a Prettier script and prettierrc. 
+* Updated dependencies, and double checked to make sure everything continued to work this time. 
+
 ## 2.2.3 (2023/3/3)
 
 * Fixed a bug preventing the ability to filter log messages in the formatter. This change is courtesy of [Pull #23](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/23), which closes [Issue #15](https://github.com/TheAppleFreak/winston-slack-webhook-transport/issues/15) in the process. Thanks @ArturAralin and @jbojbo!

@@ -1,7 +1,7 @@
 import Transport = require("winston-transport");
 
 declare class SlackHook extends Transport {
-    constructor (opts: SlackHook.SlackHookOptions);
+    constructor(opts: SlackHook.SlackHookOptions);
 }
 
 declare namespace SlackHook {
@@ -12,19 +12,19 @@ declare namespace SlackHook {
     }
 
     interface SlackMessage {
-        text?: string
-        attachments?: any[]
-        blocks?: any[]
-        icon_emoji?: string
-        username?: string
-        icon_url?: string
-        channel?: string
+        text?: string;
+        attachments?: any[];
+        blocks?: any[];
+        icon_emoji?: string;
+        username?: string;
+        icon_url?: string;
+        channel?: string;
     }
 
     interface SlackHookOptions {
         /**
-         * Slack incoming webhook URL. 
-         * 
+         * Slack incoming webhook URL.
+         *
          * {@link https://api.slack.com/messaging/webhooks Follow steps 1 through 3 at this link to create a new webhook if you don't already have one}.
          */
         webhookUrl: string;
@@ -57,7 +57,7 @@ declare namespace SlackHook {
          * Overrides the webhook's default channel. This should be a channel ID. (Default: `undefined`)
          */
         channel?: string;
-         /**
+        /**
          * Overrides the webhook's default username. (Default: `undefined`)
          */
         username?: string;
@@ -65,10 +65,15 @@ declare namespace SlackHook {
          * An {@link https://www.webpagefx.com/tools/emoji-cheat-sheet/ emoji code string} to use in place of the default icon. Interchangeable with `iconUrl`. (Default: `undefined`)
          */
         iconEmoji?: string;
-         /**
+        /**
          * An icon image URL string to use in place of the default icon. Interchangeable with `iconEmoji`. (Default: `undefined`)
          */
         iconUrl?: string;
+
+        /**
+         * Enables or disables {@link https://github.com/winstonjs/winston#awaiting-logs-to-be-written-in-winston emitting errors when Axios throws an error}. This can occur if Slack returns a non-200 response code, such as `429 Too Many Requests`. When disabled, Slack errors will be silently dropped, {@link https://github.com/TheAppleFreak/winston-slack-webhook-transport/issues/24 though if unhandled this can possibly lead to unexpected and transient crashes}. Enable to handle those errors yourself. (Default: `false`)
+         */
+        emitAxiosErrors?: boolean;
     }
 }
 
