@@ -435,7 +435,7 @@ describe("Error handling", () => {
         emitAxiosErrors: false
     };
 
-    let fakeSlackHookNoEmit, fakeSlackHookEmit, eventSpy;
+    let fakeSlackHookNoEmit, fakeSlackHookEmit, noEmitSpy, emitSpy;
 
     beforeAll(() => {
         jest.clearAllMocks();
