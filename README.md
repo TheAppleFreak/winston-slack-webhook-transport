@@ -54,6 +54,7 @@ logger.add(new SlackHook({ webhookUrl: "https://hooks.slack.com/services/xxx/xxx
 * `username` - Overrides the webhook's default username. (Default: `undefined`)
 * `iconEmoji` - An [emoji code string](https://www.webpagefx.com/tools/emoji-cheat-sheet/) to use in place of the default icon. (Interchangeable with `iconUrl`) (Default: `undefined`)
 * `iconUrl` - An icon image URL string to use in place of the default icon. Interchangeable with `iconEmoji`. (Default: `undefined`)
+* `emitAxiosErrors` - Enables or disables [emitting errors when Axios throws an error](https://github.com/winstonjs/winston#awaiting-logs-to-be-written-in-winston). This can occur if Slack returns a non-200 response code, such as `429 Too Many Requests`. When disabled, Slack errors will be silently dropped, [though if unhandled this can possibly lead to unexpected and transient crashes.](https://github.com/TheAppleFreak/winston-slack-webhook-transport/issues/24) Enable to handle those errors yourself. (Default: `false`)
 
 ### Message formatting
 
