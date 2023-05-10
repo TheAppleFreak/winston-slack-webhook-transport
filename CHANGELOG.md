@@ -2,6 +2,10 @@
 
 (all dates use the ISO-8601 format, which is YYYY/MM/DD)
 
+## 2.3.1 (2023/5/10)
+
+* The `SlackHookOptions` type now extends `TransportStreamOptions`. This change is courtesy of [Pull #26](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/26). Thanks @DominicRoyStang!
+
 ## 2.3.0 (2023/4/5)
 
 * Added an option (`emitAxiosErrors`) to enable or disable emitting errors if Axios throws an error. Previously, if Axios returned an error for any reason, this would emit an error, which if unhandled would be treated as an unhandled exception. This includes potentially transient issues, such as if Slack would return an error for any reason, including API outages or `429 Too Many Requests` errors. This option requires the user to explicitly opt into this behavior, and is `false` by default. This closes [Issue #24](https://github.com/TheAppleFreak/winston-slack-webhook-transport/issues/24). Thanks @jbojbo for bringing this to my attention!
