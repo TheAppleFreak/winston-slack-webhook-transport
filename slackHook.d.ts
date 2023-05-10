@@ -21,7 +21,7 @@ declare namespace SlackHook {
         channel?: string;
     }
 
-    interface SlackHookOptions extends TransportStreamOptions {
+    interface SlackHookOptions extends Transport.TransportStreamOptions {
         /**
          * Slack incoming webhook URL.
          *
