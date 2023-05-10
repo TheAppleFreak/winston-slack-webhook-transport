@@ -2,6 +2,12 @@
 
 (all dates use the ISO-8601 format, which is YYYY/MM/DD)
 
+## 2.3.2 (2023/5/10)
+
+* The `SlackHookOptions` type now extends `TransportStreamOptions`, properly this time. This change is courtesy of [Pull #28](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/28). Thanks again @DominicRoyStang!
+* Deprecated v2.3.1 for the above reason. While v2.3.1 should not cause any issues for existing users and use cases, I'd rather not have a potentially buggy version in the wild. 
+* Updated GitHub Actions to test against Node.js 16 and the latest available version, instead of just Node.js 16.
+
 ## 2.3.1 (2023/5/10)
 
 * The `SlackHookOptions` type now extends `TransportStreamOptions`. This change is courtesy of [Pull #26](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/26). Thanks @DominicRoyStang!
