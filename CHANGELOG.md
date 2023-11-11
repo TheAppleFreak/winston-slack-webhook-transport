@@ -2,6 +2,12 @@
 
 (all dates use the ISO-8601 format, which is YYYY/MM/DD)
 
+## 2.3.3 (2023/11/11)
+
+* No changes have been made to the code in this release.
+* Updated dependencies, which solves [Pull #29](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/29) and [Pull #30](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/30) while also closing [Issue #31](https://github.com/TheAppleFreak/winston-slack-webhook-transport/issues/31). Thanks @dvasilen!
+* Updated `devcontainer.json` to ensure the development environment is using the latest version of Node and NPM available.
+
 ## 2.3.2 (2023/5/10)
 
 * The `SlackHookOptions` type now extends `TransportStreamOptions`, properly this time. This change is courtesy of [Pull #28](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/28). Thanks again @DominicRoyStang!
