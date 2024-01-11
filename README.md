@@ -2,7 +2,7 @@
 
 A Slack transport for Winston 3+ that logs to a channel via webhooks.
 
-![Continuous Integration](https://github.com/TheAppleFreak/winston-slack-webhook-transport/actions/workflows/tests.yml/badge.svg) [![npm version](https://badge.fury.io/js/winston-slack-webhook-transport.svg)](https://www.npmjs.com/package/winston-slack-webhook-transport) [![downloads](https://img.shields.io/npm/dw/winston-slack-webhook-transport)]((https://www.npmjs.com/package/winston-slack-webhook-transport))
+![Continuous Integration](https://github.com/TheAppleFreak/winston-slack-webhook-transport/actions/workflows/tests.yml/badge.svg) [![npm version](https://badge.fury.io/js/winston-slack-webhook-transport.svg)](https://www.npmjs.com/package/winston-slack-webhook-transport) [![downloads](https://img.shields.io/npm/dw/winston-slack-webhook-transport)](https://www.npmjs.com/package/winston-slack-webhook-transport)
 
 ## Installation
 

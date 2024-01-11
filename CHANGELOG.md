@@ -2,6 +2,12 @@
 
 (all dates use the ISO-8601 format, which is YYYY/MM/DD)
 
+## 2.3.4 (2024/1/10)
+
+* No changes have been made to the code in this release.
+* Updated dependencies, which closes [Pull #32](https://github.com/TheAppleFreak/winston-slack-webhook-transport/pull/32) in the process. 
+* Updated copyright year in LICENSE.md
+
 ## 2.3.3 (2023/11/11)
 
 * No changes have been made to the code in this release.
