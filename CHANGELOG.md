@@ -2,6 +2,11 @@
 
 (all dates use the ISO-8601 format, which is YYYY/MM/DD)
 
+## 2.3.5 (2024/3/21)
+
+* No changes have been made to the code in this release.
+* Updated dependencies.
+
 ## 2.3.4 (2024/1/10)
 
 * No changes have been made to the code in this release.
