@@ -1,6 +1,6 @@
 // See https://containers.dev/implementors/json_reference/ for configuration reference
 {
-	"name": "PCMRBot.js",
+	"name": "winston-slack-webhook-transport",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
