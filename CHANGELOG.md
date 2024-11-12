@@ -2,6 +2,12 @@
 
 (all dates use the ISO-8601 format, which is YYYY/MM/DD)
 
+## 2.3.6 (2024/11/12)
+
+* No changes have been made to the code in this release.
+* Updated dependencies so Dependabot would stop yelling at me.
+* Fixed link rot in README.md and slightly updated one of the code examples so it reads better.
+
 ## 2.3.5 (2024/3/21)
 
 * No changes have been made to the code in this release.
