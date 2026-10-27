@@ -2,6 +2,13 @@
 
 (all dates use the ISO-8601 format, which is YYYY/MM/DD)
 
+## 2.3.7 (2026/10/26)
+
+* No changes have been made to the code in this release.
+* Updated dependencies because it's been a bit since the last update and last week's global security nightmare is on the mind. This actually removes a Babel plugin that wasn't needed in testing.
+* Updated the devcontainer configuration to use modern container definitions. This also updates the bundled version of Node from 20 to the current LTS.
+* Set up GitHub Trusted Publishing, and updated the test suite to test against the last three LTS versions of Node.
+
 ## 2.3.6 (2024/11/12)
 
 * No changes have been made to the code in this release.
